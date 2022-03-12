@@ -8,7 +8,7 @@ let localTodos = localStorage.getItem("todos")
 let parent = document.querySelector("#todo-list");
 let count = Object.keys(localTodos).length;
 // console.log(count)
-for(let i = 0; i<count; i++ ){
+for(let i = 1; i<count+1; i++ ){
     let id = `li${i}`;
     // console.log(id)
     let el = localTodos[id];
@@ -23,7 +23,7 @@ for(let i = 0; i<count; i++ ){
     `
     li.innerHTML += html;
     parent.appendChild(li)
-    console.log(li)
+    // console.log(li)
     document.querySelector(`#i${count-1}`).addEventListener('click', function(){
         // console.log('clicked ' + `i${counter-1}`)
         let todoId = `li${count-1}`;
