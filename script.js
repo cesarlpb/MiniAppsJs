@@ -1,5 +1,17 @@
 // Refactor and pick better constant/variables names
 
+/*
+Todo {
+
+    todoId: number
+    content: text
+    date: new Date().toLocalDateString()
+    isCompleted: boolean
+    tags: array [dev, coding, etc]
+
+}
+*/
+
 //read
 let localTodos = localStorage.getItem("todos") 
 ? JSON.parse(localStorage.getItem(("todos")))
@@ -19,17 +31,19 @@ for(let i = 1; i<count+1; i++ ){
     // console.log(el.content)
 
     let html = `
-    <button id="i${+count-1}" class="col-2"><i class="fa-solid fa-check"></i></button>
+    <button id="i${i}" class="col-2"><i class="fa-solid fa-check"></i></button>
     `
     li.innerHTML += html;
     parent.appendChild(li)
-    // console.log(li)
-    document.querySelector(`#i${count-1}`).addEventListener('click', function(){
-        // console.log('clicked ' + `i${counter-1}`)
-        let todoId = `li${count-1}`;
+    console.log(li)
+    
+    document.querySelector(`#i${i}`).addEventListener('click', function(){
+        console.log('clicked ' + `i${count-1}`)
+        let todoId = `li${i}`;
         completeTodo(todoId);
         delTodo(todoId);
     });
+
 }
 console.log('added')
 
