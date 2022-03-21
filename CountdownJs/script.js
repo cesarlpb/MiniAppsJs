@@ -13,7 +13,7 @@
 
 let initInterval;
 let timePassed = {};
-const sixty = 60;
+const sixty = 60;   // set as 60 for use; set as 1, 2, 3.. for quick test
 
 document.querySelector("#stop-btn")
     .addEventListener('click', function(event)
@@ -79,10 +79,17 @@ function init(){
 
     seconds.innerText = secCounter;
 
+    // Updating title
+    let title = document.querySelector("title");
+    let timer = `
+    Worked - [
+        ${hoursCounter} : 
+        ${minCounter} : 
+        ${secCounter} ]
+    `;
+    title.innerText = timer;
 }
 function stop(){
-    console.log('stopped');
-    clearInterval(initInterval);
     let seconds = document.querySelector("#seconds");
     let minutes = document.querySelector("#minutes");
     let hours = document.querySelector("#hours");
@@ -92,12 +99,30 @@ function stop(){
     timePassed.seconds = parseInt(seconds.innerText);
 
     console.log(timePassed);
+
+    // Updating title
+    let title = document.querySelector("title");
+    title.innerText = title.innerText.replace("Worked", "Stopped");
+
+    clearInterval(initInterval);
+    console.log('stopped'); 
 }
 function save(){
     console.log("Saving...")
     let localTimers = localStorage.getItem("timers") ? JSON.parse(localStorage.getItem("timers")) : []; 
     let today = new Date();
     localTimers[today.toDateString()] = timePassed;
-    localStorage.setItem("timers", JSON.stringify(localTimers));
+    localStorage.setItem("timers", JSON.stringify(localTimers));    // check: not saving?
     console.log(localTimers)
+
+    // Updating title
+    let title = document.querySelector("title");
+    let word = title.innerText.includes("Worked") ? "Worked" : "Stopped";
+    console.log(word)
+    title.innerText = title.innerText.replace(word, "Saved");
+
+    // stopping when it isn't but Saved is clicked
+    if(word == "Worked"){
+        stop();
+    }
 }
