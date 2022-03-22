@@ -1,5 +1,7 @@
 // Refactor and pick better constant/variables names
 
+// Add button to permanently remove todos from completed or when refreshing
+// Solve issue: only 3 elements are uploading from LocalStorage
 /*
 Todo {
 
@@ -76,7 +78,7 @@ function addTodo(){
         "content": li.innerText
         }
     localStorage.setItem("todos", JSON.stringify(localTodos))
-    console.log(localTodos)
+    // console.log(localTodos)
 
 
     document.querySelector("#todo").value = '';
@@ -105,9 +107,41 @@ function completeTodo(todoId){
     el.setAttribute("class", "completed");
     el.innerText = text;
 
+    let outer = document.createElement("span");
+    outer.setAttribute("class", "outer");
+    outer.appendChild(el)
     todo.innerText = '';
-    todo.appendChild(el);
+
+    console.log(el)
+    todo.appendChild(outer);
+    let btn = document.createElement("button");
+    btn.setAttribute("class", "col-2");
+    btn.setAttribute("id", `r${todoId.slice(-1)}`);
+
+    let trashIcon = document.createElement("i");
+    trashIcon.setAttribute("class", "fa-solid fa-trash");
+    btn.appendChild(trashIcon);
+    // console.log(btn)
+    todo.innerHTML += btn.outerHTML;
     parent.appendChild(todo);
+
+    document.querySelector(`#r${todoId.slice(-1)}`).addEventListener('click', function(){
+        // console.log('clicked ' + `i${count-1}`)
+        
+        // completeTodo(todoId);
+        // delTodo(todoId);
+        let localTodos = localStorage.getItem("todos") 
+        ? JSON.parse(localStorage.getItem(("todos")))
+        : [];
+        console.log(todoId)
+        let wasRemoved = delete localTodos[`li${todoId.slice(-1)}`];
+        if(wasRemoved){
+            document.querySelector(`#${todoId}`).remove();
+            localStorage.setItem("todos", JSON.stringify(localTodos))
+        } else {
+            console.log('elment not found')
+        }
+    });
 }
 
 function createTodo(todo){

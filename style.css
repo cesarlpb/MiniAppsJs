@@ -1,16 +1,19 @@
 ul{
     list-style-type:none;
 }
-li{
+#completed li, li{
     width: 100%;
     display: flex;
     justify-content: space-between;
+}
+#completed i{
+    color: black;
 }
 .completed{
     color: white;
 }
 
-#completed-list li{
+.outer{
     color: black;
     text-decoration: line-through;
 }
