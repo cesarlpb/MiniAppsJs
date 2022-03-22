@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+    <title>Countdown Js</title>
+</head>
+<body>
+    <div class="bg-light col-6 mx-auto text-center py-5">
+        <div class="row col-10 bg-secondary mx-auto text-white font-weight-bold rounded-top justify-content-center pt-3" id="clock">
+            <span class="col-2" id="hours">00</span>
+            <span class="col-1">:</span>
+            <span class="col-2" id="minutes">00</span>
+            <span class="col-1">:</span>
+            <span class="col-2" id="seconds">00</span>
+        </div>
+        <div class="row col-10 bg-secondary mx-auto text-white rounded-bottom justify-content-center mb-3 pb-3">
+            <span class="col-2" id="h-label">h</span>
+            <span class="col-1"></span>
+            <span class="col-2" id="m-label">m</span>
+            <span class="col-1"></span>
+            <span class="col-2" id="s-label">s</span>
+        </div>
+        <div class="row col-10 mx-auto text-center justify-content-center">
+            <div class="col-3 btn btn-primary mx-1" id="start-btn">Start</div>
+            <div class="col-3 btn btn-danger mx-1" id="stop-btn">Stop</div>
+            <div class="col-3 btn btn-info mx-1" id="stop-btn" onclick="save()">Save</div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
